@@ -1,14 +1,20 @@
-def round_winner(player1: str, player2: str) -> int:
-    if player1 == "rock" and player2 == "scissors":
+from enum import Enum
+
+Choice = Enum("Choice", ["rock", "paper", "scissors"])
+
+def round_winner(player1: Choice, player2: Choice) -> int:
+    if player1 == Choice.rock:
+        if player2 == Choice.rock:
+            return 0
+        if player2 == Choice.paper:
+            return 2
         return 1
-    if player1 == "rock" and player2 == "paper":
+    if player1 == Choice.paper:
+        if player2 == Choice.rock:
+            return 1
+        if player2 == Choice.paper:
+            return 0
         return 2
-    if player1 == "scissors" and player2 == "rock":
+    if player2 == Choice.rock:
         return 2
-    if player1 == "scissors" and player2 == "paper":
-        return 1
-    if player1 == "paper" and player2 == "rock":
-        return 1
-    if player1 == "paper" and player2 == "scissors":
-        return 2
-    return 0
+    
